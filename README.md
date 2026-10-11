@@ -36,4 +36,8 @@ Code problem (tests are `[[arguments...], expected]`):
  "hints":["..."],"solution":"Explanation.","solutionCode":"def my_func(nums):\n    return sum(nums)",
  "tests":[[[[1,2,3]],6],[[[]],0]]}
 ```
+In `solution`, start with **why** the idea works. Use `\n\n` for a new paragraph and `\n` for a new line.
+
+Keep every number in `tests` below 9007199254740992 (2^53). Bigger numbers lose digits in the browser.
+
 Check every new answer and test before you add it. A wrong test teaches the wrong thing.

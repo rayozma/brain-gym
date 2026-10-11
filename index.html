@@ -5,55 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Brain Gym</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f3ec;--card:#fffdf8;--ink:#1f1d1a;--mute:#6d675d;--line:#e3ddd0;--code:#2f6b4f;--codebg:#e6efe9;--math:#4b4fa8;--mathbg:#e9e9f6;--ok:#2f7a45;--bad:#b3412e;--warn:#9a6a12;--field:#fbf9f4}
-@media (prefers-color-scheme:dark){:root{--bg:#171614;--card:#201f1c;--ink:#ece7dd;--mute:#a39c8f;--line:#35322c;--code:#7cc59c;--codebg:#1f2e26;--math:#a5a8f0;--mathbg:#25263a;--ok:#6fcf8a;--bad:#ef8a75;--warn:#e0b45a;--field:#191816}}
+:root{--bg:#eef1f6;--card:#fff;--ink:#0e1424;--mute:#5a6378;--line:#dbe0ea;--accent:#3b5bfd;--onaccent:#fff;--accentbg:#e7ecff;--code:#0a8a66;--codebg:#dcf4eb;--math:#3b5bfd;--mathbg:#e7ecff;--ok:#0a8a66;--bad:#e0364a;--warn:#d68400;--field:#f6f8fb;--shadow:0 1px 2px rgba(14,20,36,.05),0 4px 16px rgba(14,20,36,.04)}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0f1a;--card:#131a2a;--ink:#e8ecf5;--mute:#8d97ad;--line:#243049;--accent:#7590ff;--onaccent:#0b0f1a;--accentbg:#1c2547;--code:#3fd1a0;--codebg:#12312a;--math:#8ea2ff;--mathbg:#1c2547;--ok:#3fd1a0;--bad:#ff6b7d;--warn:#ffb648;--field:#0f1522;--shadow:none}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "IBM Plex Sans",system-ui,sans-serif}
-.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:650;letter-spacing:-.01em;margin:0}
-h1{font-size:28px}h2{font-size:22px;margin-bottom:6px}h3{font-size:17px}
-nav{display:flex;gap:4px;flex-wrap:wrap}
-nav button{background:none;border:1px solid transparent;color:var(--mute);padding:6px 12px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
-nav button.on{border-color:var(--line);background:var(--card);color:var(--ink)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Manrope,system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;letter-spacing:-.02em;margin:0}
+h1{font-size:28px}h1::after{content:"";display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--accent);margin-left:5px}
+h2{font-size:23px;margin-bottom:6px}h3{font-size:18px}
+nav{display:flex;gap:2px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
+nav button{background:none;border:0;color:var(--mute);padding:6px 14px;border-radius:7px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+nav button:hover{color:var(--ink)}
+nav button.on{background:var(--accent);color:var(--onaccent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
 .muted{color:var(--mute)}.small{font-size:14px}
-.tag{display:inline-block;font-size:12px;font-weight:500;padding:2px 8px;border-radius:999px;margin-right:6px;border:1px solid var(--line);color:var(--mute)}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:6px;margin-right:6px;border:1px solid var(--line);color:var(--mute)}
 .tag.code{background:var(--codebg);color:var(--code);border-color:transparent}
 .tag.math{background:var(--mathbg);color:var(--math);border-color:transparent}
-.btn{font:inherit;font-size:15px;font-weight:500;padding:8px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
-.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.btn:disabled{opacity:.5;cursor:default}
+.btn{font:inherit;font-size:15px;font-weight:600;padding:8px 16px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--mute)}
+.btn.primary{background:var(--accent);color:var(--onaccent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.5;cursor:default;filter:none}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.task{display:flex;flex-direction:column;gap:8px}
-.task .kind{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);font-weight:600}
-.done{opacity:.6}
+.task{display:flex;flex-direction:column;gap:8px;border-top:3px solid var(--accent)}
+.task .kind{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700}
+.done{opacity:.6;border-top-color:var(--line)}
 .statement{font-size:17px;margin:12px 0}
-code,textarea.ed,pre{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:14px}
-.statement code,.note code{background:var(--field);border:1px solid var(--line);padding:0 5px;border-radius:5px}
-textarea.ed{width:100%;min-height:200px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);line-height:1.5;resize:vertical;tab-size:4}
-input[type=text],textarea.note-in{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink)}
+code,textarea.ed,pre{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:14px}
+.statement code,.note code,.sol code,.hint code{background:var(--field);border:1px solid var(--line);padding:0 5px;border-radius:5px;font-size:.88em}
+textarea.ed{width:100%;min-height:200px;padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--ink);line-height:1.5;resize:vertical;tab-size:4}
+textarea.ed:focus,input[type=text]:focus,textarea.note-in:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:transparent}
+input[type=text],textarea.note-in{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--ink)}
 textarea.note-in{width:100%;min-height:60px}
 .hint{border-left:3px solid var(--warn);padding:6px 12px;margin:8px 0;background:var(--field);border-radius:0 8px 8px 0}
-.sol{border-left:3px solid var(--ok);padding:8px 12px;margin:8px 0;background:var(--field);border-radius:0 8px 8px 0}
-pre{background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow-x:auto;white-space:pre}
+.sol{border-left:3px solid var(--ok);padding:10px 14px;margin:8px 0;background:var(--field);border-radius:0 8px 8px 0;font-size:15px}
+.sol p{margin:8px 0 0}
+pre{background:var(--field);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;white-space:pre}
 table{width:100%;border-collapse:collapse;font-size:14px}
 td,th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-td.mono{font-family:"IBM Plex Mono",monospace;word-break:break-all}
-.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}
-.msg{padding:10px 12px;border-radius:10px;margin:10px 0;background:var(--field);border:1px solid var(--line)}
+td.mono{font-family:"JetBrains Mono",monospace;word-break:break-all}
+.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}
+.msg{padding:10px 12px;border-radius:8px;margin:10px 0;background:var(--field);border:1px solid var(--line)}
 .msg.bad{border-color:var(--bad)}.msg.ok{border-color:var(--ok)}
-.feel button{min-width:78px}.feel button.on{background:var(--ink);color:var(--bg)}
-.list .item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.feel button{min-width:78px}.feel button.on{background:var(--accent);color:var(--onaccent);border-color:var(--accent)}
+.list .item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 6px;border-bottom:1px solid var(--line);cursor:pointer;border-radius:6px}
 .list .item:hover{background:var(--field)}
-.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;border:1.5px solid var(--mute)}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;border:1.5px solid var(--mute)}
 .dot.seen{background:var(--warn);border-color:var(--warn)}.dot.solved{background:var(--ok);border-color:var(--ok)}
-.timer{font-family:"IBM Plex Mono",monospace;color:var(--mute);font-size:14px}
+.timer{font-family:"JetBrains Mono",monospace;color:var(--mute);font-size:14px}
 .sec{margin-top:16px}
-a{color:inherit}
+a{color:var(--accent)}
 @media (max-width:560px){h1{font-size:24px}.statement{font-size:16px}}
 </style>
 </head>
@@ -71,6 +77,7 @@ const KEY = 'braingym.v1', INTERVALS = [1, 3, 7, 16, 35, 75];
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/`([^`]+)`/g, '<code>$1</code>');
+const paras = s => String(s).split(/\n\n+/).map(x => `<p>${fmt(x).replace(/\n/g, '<br>')}</p>`).join('');
 const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
 const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
 let S = load();
@@ -158,7 +165,7 @@ function vProblem({ id, review }) {
 }
 function showHint() { const p = cur.p; if (cur.hints >= p.hints.length) return; $('#hints').insertAdjacentHTML('beforeend', `<div class="hint small"><b>Hint ${cur.hints + 1}.</b> ${fmt(p.hints[cur.hints])}</div>`); cur.hints++; const b = $('#hintb'); b.textContent = cur.hints >= p.hints.length ? 'No more hints' : `Show a hint (${p.hints.length - cur.hints} left)`; b.disabled = cur.hints >= p.hints.length; }
 function showSol() { if (cur.shownSol) return; if (!cur.solved && !confirm('Show the solution? Try a hint first if you have not.')) return; cur.shownSol = true; const p = cur.p;
-  $('#sol').innerHTML = `<div class="sol small"><b>Solution.</b> ${p.track === 'math' ? `Answer: <b>${p.answer}</b>. ` : ''}${fmt(p.solution)}</div>${p.solutionCode ? `<pre>${esc(p.solutionCode)}</pre>` : ''}`; }
+  $('#sol').innerHTML = `<div class="sol"><b>Solution</b>${p.track === 'math' ? ` · Answer: <b>${p.answer}</b>` : ''}${paras(p.solution)}</div>${p.solutionCode ? `<pre>${esc(p.solutionCode)}</pre>` : ''}`; }
 function checkMath() { const v = $('#ans').value.trim().replace(/,/g, ''); if (!v) return; const ok = Number(v) === cur.p.answer;
   if (ok) cur.solved = true; cur.tries = (cur.tries || 0) + 1;
   $('#out').innerHTML = `<div class="msg ${ok ? 'ok' : 'bad'}">${ok ? 'Correct.' : 'Not correct. Check your work, or take a hint.'}</div>`; }
